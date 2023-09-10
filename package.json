@@ -4,6 +4,8 @@
   "description": "Just learning react and stuff",
   "main": "App.js",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/ris-hub/React#readme",
   "devDependencies": {
+    "@babel/core": "^7.22.17",
     "parcel": "^2.9.3",
     "process": "^0.11.10"
   },
