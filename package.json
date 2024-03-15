@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ris-hub/React#readme",
   "devDependencies": {
     "@babel/core": "^7.22.17",
-    "parcel": "^2.9.3",
+    "parcel": "^2.12.0",
     "process": "^0.11.10"
   },
   "dependencies": {
