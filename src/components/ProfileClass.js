@@ -28,6 +28,7 @@ class Profile extends React.Component {
         this.setState({
             userInfo: json,
         })
+
         console.log("Child - componentDidMount" + this.props.name);
     }
 

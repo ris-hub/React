@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"; // name import
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
-//filtering data for search text -> for example if KFC is search then we will filter out KFC from the resutaurantList if present and return it
-filterData = (searchText, restaurants) => {
-  return restaurants.filter((restaurant) => restaurant?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase()))
-}
+
 
 const Body = () => {
 
@@ -41,7 +40,12 @@ const Body = () => {
   //conditional rendering
   //if restaurant is empty => shimmer ui
   //if restaurant has data => actual data UI
+  const isOnline = useOnline();
 
+  //early return
+  if (!isOnline) {
+    return <h1>🔴Offline, please check your internet connection!</h1>
+  }
 
 
   return (filteredRestaurants.length === 0) ? <Shimmer /> : (
