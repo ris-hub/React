@@ -38,20 +38,20 @@ const RestaurantMenu = () => {
 
     //console.log(restaurantMenu);
     return (
-        <div className="menu">
-            <div>
-                <h2>{"Restaurant id: " + restaurant?.id}</h2>
-                <h2>{restaurant?.name}</h2>
-                <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} />
+        <div className="flex">
+            <div className="p-2 m-2 shadow-sm">
+                <h2 className="font-bold">{"Restaurant id: " + restaurant?.id}</h2>
+                <h2 className="font-bold text-xl">{restaurant?.name}</h2>
+                <img className="max-w-96 p-2 m-2 shadow-lg bg-pink-50" src={IMG_CDN_URL + restaurant.cloudinaryImageId} />
                 <h3>{restaurant?.cuisines}</h3>
                 <h3>{restaurant?.costForTwoMessage}</h3>
                 <h3>{restaurant?.avgRating} stars</h3>
                 <h3>{restaurant?.locality}</h3>
                 <h3>{restaurant?.city}</h3>
             </div>
-            <div>
+            <div className="p-3 m-3 shadow-sm">
                 <h1>Menu</h1>
-                <ul>{
+                <ul className="list-disc">{
                     Object.values(restaurantMenu).map((item) =>
                         <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
                     )}</ul>

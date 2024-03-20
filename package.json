@@ -20,8 +20,11 @@
   "homepage": "https://github.com/ris-hub/React#readme",
   "devDependencies": {
     "@babel/core": "^7.22.17",
+    "autoprefixer": "^10.4.18",
     "parcel": "^2.12.0",
-    "process": "^0.11.10"
+    "postcss": "^8.4.37",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1"
   },
   "dependencies": {
     "react": "^18.2.0",
