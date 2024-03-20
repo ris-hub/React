@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"; // name import
+import { useContext, useEffect, useState } from "react"; // name import
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
@@ -15,6 +16,7 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");//to create state variable
+  const { user, setUser } = useContext(UserContext);
 
   //const [searchClicked, setSearchClicked] = useState("false");
 
@@ -71,6 +73,18 @@ const Body = () => {
           }}
         >
           Search</button>
+        <input value={user.name} onChange={
+          (e) => setUser({
+            ...user,
+            name: e.target.value,
+          })
+        }></input>
+        <input value={user.email} onChange={
+          (e) => setUser({
+            ...user,
+            email: e.target.value
+          })
+        }></input>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
