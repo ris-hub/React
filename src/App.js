@@ -13,6 +13,7 @@ import Profile from "./components/Profile";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import store from "./utils/store.js";
+import UserContext from "./utils/UserContext.js";
 
 /**
      Header
@@ -811,9 +812,14 @@ const AppLayout = () => {
 
   return (
     <Provider store={store}>
-      <Header />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider
+        value={{
+          user: user,
+        }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </Provider>
   );
 
