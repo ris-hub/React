@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addItem } from "../utils/cartSlice";
 import Shimmer from "./Shimmer";
 import { FETCH_MENU_URL, IMG_CDN_URL } from "./config";
 
@@ -27,13 +29,16 @@ const RestaurantMenu = () => {
         setRestaurant(json?.data?.cards[0]?.card?.card?.info)
         setRestaurantMenu(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards)
     }
+    //console.log(restaurant);
 
-
-
-    console.log(restaurant);
+    const dispatch = useDispatch();
 
     if (!restaurant) {
         return <Shimmer />
+    }
+
+    const addFootItem = (item) => {
+        dispatch(addItem(item));
     }
 
     //console.log(restaurantMenu);
@@ -53,7 +58,12 @@ const RestaurantMenu = () => {
                 <h1>Menu</h1>
                 <ul className="list-disc">{
                     Object.values(restaurantMenu).map((item) =>
-                        <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
+                        <li key={item?.card?.info?.id}>
+                            {item?.card?.info?.name}
+                            - <button className="p-1 bg-gray-50"
+                                onClick={() => addFootItem(item?.card?.info)}
+                            >Add</button>
+                        </li>
                     )}</ul>
             </div>
         </div>

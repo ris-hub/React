@@ -2,7 +2,9 @@ import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 //import About from "./components/About";
+import { Provider } from "react-redux";
 import Body from "./components/Body";
+import Cart from "./components/Cart.js";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Footer from "./components/Footer";
@@ -10,7 +12,7 @@ import Header from "./components/Header";
 import Profile from "./components/Profile";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
-import UserContext from "./utils/UserContext.js";
+import store from "./utils/store.js";
 
 /**
      Header
@@ -808,18 +810,26 @@ const AppLayout = () => {
   })
 
   return (
-    <>
-      <UserContext.Provider
-        value={{
-          user: user,
-          setUser: setUser,
-        }}>
-        <Header />
-        <Outlet />
-        <Footer />
-      </UserContext.Provider>
-    </>
+    <Provider store={store}>
+      <Header />
+      <Outlet />
+      <Footer />
+    </Provider>
   );
+
+  // return (
+  //   <>
+  //     <UserContext.Provider
+  //       value={{
+  //         user: user,
+  //         setUser: setUser,
+  //       }}>
+  //       <Header />
+  //       <Outlet />
+  //       <Footer />
+  //     </UserContext.Provider>
+  //   </>
+  // );
 };
 
 const appRouter = createBrowserRouter([
@@ -861,6 +871,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         )
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
     ],
   },
